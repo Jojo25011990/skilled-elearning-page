@@ -1,0 +1,131 @@
+@use "./variables" as *;
+
+// *** Font Settings ***
+@mixin font-settings($size, $weight, $line-height) {
+	font-size: size($size);
+	font-weight: $weight;
+	line-height: $line-height;
+}
+
+// *** Flexbox Settings ****
+@mixin flex-settings(
+	$justify: center,
+	$align: center,
+	$direction: null,
+	$gap: null
+) {
+	display: flex;
+	justify-content: $justify;
+	align-items: $align;
+	flex-direction: $direction;
+
+	@if $gap {
+		gap: $gap;
+	}
+}
+
+// *** Mixin for html font-sizes ***
+// *** Mixin + Lists + loop @for ***
+@mixin responsive-settings(
+	$breakpoints: (
+		1300px,
+		960px,
+	),
+
+	$f-sizes: (
+		50%,
+		40%,
+	)
+) {
+	@for $i from 1 through length($breakpoints) {
+		@media (max-width: nth($breakpoints, $i)) {
+			font-size: nth($list: $f-sizes, $n: $i);
+		}
+	}
+}
+
+/*
+// Example of how to correctly call the mixin
+// ----------------------------------------------------
+// Breakpoints and f-sizes are lists containing predefined values.
+// In the @for loop, we declare a variable $i and iterate from 1 to the length of the lists.
+// Inside the @media query, the nth function is used to access the nth value from the breakpoints list.
+// In the font-size block, we again use nth to get the nth value from the f-sizes list.
+// As a result, the following media queries will be generated:
+
+@media (max-width: 1300) {
+// first loop
+font-size: 50%;
+
+// second loop
+font-size: 40%;
+
+
+// Sorry for my English, is a not perfectly, I am still learning 😊
+ */
+
+// *** Mixin Reponsive for sections ***
+
+@mixin respon-design($breakpoint) {
+	@if $breakpoint == desktop-large {
+		@media (max-width: 1360px) {
+			@content;
+		}
+	}
+
+	@if $breakpoint == desktop-medium {
+		@media (max-width: 1300px) {
+			@content;
+		}
+	}
+
+	@if $breakpoint == desktop-small {
+		@media (max-width: 1080px) {
+			@content;
+		}
+	}
+
+	@if $breakpoint == tablet-ex-large {
+		@media (max-width: 1024px) {
+			@content;
+		}
+	}
+
+	@if $breakpoint == tablet-large {
+		@media (max-width: 960px) {
+			@content;
+		}
+	}
+
+	@if $breakpoint == tablet-medium {
+		@media (max-width: 880px) {
+			@content;
+		}
+	}
+
+	@if $breakpoint == tablet-small {
+		@media (max-width: 775px) {
+			// 780
+			@content;
+		}
+	}
+
+	@if $breakpoint == tablet-ex-small {
+		@media (max-width: 710px) {
+			// 780
+			@content;
+		}
+	}
+
+	@if $breakpoint == mobile-ex-large {
+		@media (max-width: 660px) {
+			@content;
+		}
+	}
+
+	@if $breakpoint == mobile-large {
+		@media (max-width: 520px) {
+			@content;
+		}
+	}
+}

@@ -1,0 +1,349 @@
+@forward "./reset";
+@use "./abstract" as *;
+
+//---------------------------
+// *** Base Styles ***
+//---------------------------
+html {
+	@include responsive-settings;
+}
+
+body {
+	position: relative;
+	min-height: 100vh;
+	font-family: "Plus Jakarta Sans", serif;
+
+	background-color: $color-white;
+	color: $color-secondary;
+	padding: 2rem 2rem 0;
+
+	@include flex-settings;
+}
+
+.container {
+	width: 100%;
+	max-width: 144rem;
+	position: relative;
+	overflow: hidden;
+
+	// *** My Idea for better visual, design is at width 1440px (max)***
+	box-shadow: 0 2.5rem 5rem
+		rgba($color: $color-gradient-tertiary, $alpha: 0.1);
+
+	&__bg {
+		position: absolute;
+		top: -9.3rem;
+		right: -30rem;
+		z-index: -1;
+
+		@include respon-design(desktop-large) {
+			top: -4.5rem;
+
+			&-img {
+				height: 95vh;
+			}
+		}
+
+		@include respon-design(desktop-medium) {
+			top: -9.3rem;
+
+			&-img {
+				height: 85vh;
+			}
+		}
+
+		@include respon-design(desktop-small) {
+			top: 0;
+		}
+
+		@include respon-design(tablet-large) {
+			top: 0;
+			top: -5rem;
+
+			right: -35rem;
+		}
+
+		@include respon-design(tablet-medium) {
+			&-img {
+				height: 75vh;
+			}
+		}
+
+		@include respon-design(tablet-small) {
+			&-img {
+				height: 68vh;
+			}
+		}
+
+		@include respon-design(mobile-ex-large) {
+			top: 55rem;
+
+			left: 60%;
+			transform: translateX(-60%);
+
+			&-img {
+				height: 45vh;
+			}
+		}
+	}
+}
+// *** End of Base Style ***
+
+// *** Header ***
+.header {
+	width: 100%;
+	padding: 2.4rem 8rem;
+
+	&__container {
+		width: 100%;
+		max-width: 112rem;
+		@include flex-settings(space-between);
+	}
+
+	&__btn {
+		&:link,
+		&:visited {
+			color: $color-white;
+			background-color: $color-primary;
+			padding: 1.6rem 3.2rem;
+			border-radius: 2.8rem;
+			transition: box-shadow 0.3s ease, text-shadow 0.3s ease;
+
+			@include font-settings(small, 700, 150%);
+		}
+
+		&:hover,
+		&:active {
+			box-shadow: 0 0 0.1rem $color-primary, 0 0 0.2rem $color-primary;
+			text-shadow: 0 0 0.2rem $color-white, 0 0 0.5rem $color-white;
+		}
+	}
+}
+// *** End of Header ***
+
+// *** Main ***
+.main {
+	width: 100%;
+	padding: 6.4rem 8rem;
+
+	@include respon-design(tablet-ex-small) {
+		padding: 6.4rem 2rem;
+	}
+
+	// *** Main Content  ***
+	&__content {
+		width: 100%;
+		min-height: 68.8rem;
+		display: flex;
+		align-items: center;
+
+		@include respon-design(desktop-medium) {
+			min-height: 75rem;
+		}
+
+		@include respon-design(tablet-large) {
+			min-height: 95rem;
+		}
+
+		@include respon-design(tablet-medium) {
+			min-height: 82.5rem;
+		}
+
+		@include respon-design(tablet-small) {
+			min-height: 75rem;
+		}
+
+		@include respon-design(mobile-ex-large) {
+			justify-content: center;
+		}
+	}
+
+	&__wrapper {
+		width: 54.4rem;
+		@include flex-settings($align: null, $direction: column);
+
+		@include respon-design(tablet-small) {
+			margin-bottom: 10rem;
+		}
+
+		@include respon-design(mobile-ex-large) {
+			margin-bottom: 60rem;
+		}
+	}
+
+	&__heading {
+		color: $color-primary;
+		margin-bottom: 2.4rem;
+
+		@include font-settings(x-large, 900, 120%);
+	}
+
+	&__description {
+		max-width: 45.7rem;
+		margin-bottom: 4rem;
+
+		@include font-settings(small, 500, 150%);
+	}
+
+	&__btn {
+		&:link,
+		&:visited {
+			color: $color-white;
+			background-image: linear-gradient(
+				to bottom,
+				$color-gradient-primary,
+				$color-gradient-secondary
+			);
+			padding: 1.6rem 3.2rem;
+			border-radius: 2.8rem;
+			align-self: baseline;
+			transition: opacity 0.3s ease, text-shadow 0.3s ease;
+
+			@include font-settings(small, 700, 150%);
+		}
+
+		&:hover,
+		&:active {
+			opacity: 0.8;
+			text-shadow: 0 0 0.2rem $color-white, 0 0 0.5rem $color-white;
+		}
+	}
+
+	//*** End of Main Content  ***
+
+	// *** Main Cards ***
+	&__cards {
+		width: 100%;
+		padding: 6.4rem 8rem;
+
+		@include flex-settings;
+
+		&-wrapper {
+			width: 112rem;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			place-items: center;
+			row-gap: 5.6rem;
+			column-gap: 3.2rem;
+
+			@include respon-design(tablet-small) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			@include respon-design(mobile-large) {
+				grid-template-columns: 1fr;
+			}
+		}
+	}
+
+	// *** Basic Styles all Cards ***
+	&__card {
+		position: relative;
+		width: 35.2rem;
+		height: 35rem;
+
+		padding: 6.4rem 3.2rem 4rem;
+		border-radius: 1.5rem;
+
+		box-shadow: 0 2.5rem 5rem rgba($color: #06168d, $alpha: 0.1);
+
+		&-content {
+			height: 100%;
+
+			@include flex-settings(null, null, column, 2.4rem);
+		}
+
+		&-heading {
+			@include font-settings(medium, 900, 120%);
+		}
+
+		&-text {
+			@include font-settings(small, 500, 150%);
+		}
+
+		&-link {
+			&:link,
+			&:visited {
+				color: $color-tertiary;
+				margin-top: auto;
+				@include font-settings(small, 900, 2.8rem);
+				transition: opacity 0.3s ease;
+			}
+
+			&:hover,
+			&:active {
+				opacity: 0.65;
+			}
+		}
+
+		&-icon {
+			position: absolute;
+			top: calc(-5.6rem / 2);
+			left: calc(8.8rem - 5.6rem);
+
+			@include respon-design(tablet-large) {
+				width: 6rem;
+			}
+		}
+	}
+	// *** End of Basic Styles all Cards ***
+
+	// *** First Card ***
+	&__card-first {
+		background-image: linear-gradient(
+			to bottom,
+			$color-gradient-primary,
+			$color-gradient-secondary
+		);
+		color: $color-white;
+
+		@include respon-design(mobile-large) {
+			height: auto;
+			padding: 3.2rem;
+		}
+
+		&-title {
+			@include font-settings(large, 900, 120%);
+		}
+	}
+	// *** End of First Card ***
+}
+// *** End of Main ***
+
+// *** Footer ***
+.footer {
+	width: 100%;
+	padding: 2.4rem 8rem;
+	background-color: $color-primary;
+
+	&__container {
+		width: 100%;
+		max-width: 112rem;
+
+		@include flex-settings(space-between);
+	}
+
+	&__btn {
+		&:link,
+		&:visited {
+			color: $color-white;
+			background-image: linear-gradient(
+				to bottom,
+				$color-gradient-tertiary,
+				$color-gradient-secondary
+			);
+			padding: 1.6rem 3.2rem;
+			border-radius: 2.8rem;
+			transition: opacity 0.3s ease, text-shadow 0.3s ease;
+
+			@include font-settings(small, 700, 150%);
+		}
+
+		&:hover,
+		&:active {
+			opacity: 0.8;
+			text-shadow: 0 0 0.2rem $color-white, 0 0 0.5rem $color-white;
+		}
+	}
+}
+// *** End of Footer ***

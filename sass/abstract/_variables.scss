@@ -1,0 +1,43 @@
+// --------------------------------------
+// *** COLORS ***
+// --------------------------------------
+
+// *** Basic bg white color ***
+$color-white: #fff;
+
+// *** Main text/bg color  ***
+$color-primary: #13183f;
+$color-secondary: #83869a;
+$color-tertiary: #f74780;
+
+// *** Gradient colors ***
+$color-gradient-primary: #ff6f48;
+$color-gradient-secondary: #f02aa6;
+$color-gradient-tertiary: #4851ff;
+
+// --------------------------------------
+// *** SIZES ***
+// --------------------------------------
+// *** map ***
+$font-sizes: (
+	x-large: 5.6rem,
+	large: 3.2rem,
+	medium: 2.4rem,
+	small: 1.8rem,
+);
+
+// *** function ***
+@function size($size) {
+	@return map-get($map: $font-sizes, $key: $size);
+}
+
+// Example of how to correctly call the mixin
+/*
+button {
+    @include font-settings(large, 900, 120%);
+    // The first value is from the function (it returns the value)
+    // The second and third values are standard mixin parameters/arguments.
+    parameters -> defined in the mixin declaration.
+    arguments -> passed when calling the mixin.
+}
+*/
